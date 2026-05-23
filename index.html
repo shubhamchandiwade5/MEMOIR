@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MEMOIR — Shubham & Tamalika</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --hot-pink:#FF2D78;
+  --pink:#FF6BAE;
+  --light-pink:#FFD6E8;
+  --cream:#FFF8F0;
+  --black:#0D0D0D;
+  --white:#FFFFFF;
+  --grid-green:#00C853;
+  --pixel-size:3px;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--black);
+  cursor:none;
+  overflow-x:hidden;
+}
+
+/* CUSTOM CURSOR */
+#cursor{
+  position:fixed;
+  width:20px;height:20px;
+  background:var(--hot-pink);
+  border-radius:0;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .1s,height .1s;
+  image-rendering:pixelated;
+  clip-path:polygon(0 0,100% 0,100% 60%,60% 60%,60% 100%,0 100%);
+}
+
+/* GRID BACKGROUND */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,45,120,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,45,120,0.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* PIXEL BORDER UTILITY */
+.pixel-border{
+  box-shadow:
+    4px 0 0 var(--black),
+    -4px 0 0 var(--black),
+    0 4px 0 var(--black),
+    0 -4px 0 var(--black),
+    4px 4px 0 var(--black),
+    -4px -4px 0 var(--black),
+    4px -4px 0 var(--black),
+    -4px 4px 0 var(--black);
+}
+
+/* MARQUEE */
+.marquee-wrap{
+  background:var(--hot-pink);
+  overflow:hidden;
+  padding:10px 0;
+  border-top:4px solid var(--black);
+  border-bottom:4px solid var(--black);
+  white-space:nowrap;
+  position:relative;
+  z-index:2;
+}
+
+.marquee-track{
+  display:inline-block;
+  animation:marquee 18s linear infinite;
+}
+
+.marquee-track span{
+  font-family:'Press Start 2P',monospace;
+  font-size:0.65rem;
+  color:var(--white);
+  margin:0 2rem;
+  letter-spacing:.05em;
+}
+
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  z-index:1;
+  padding:5rem 2rem 4rem;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero-eyebrow{
+  font-family:'Press Start 2P',monospace;
+  font-size:0.6rem;
+  color:var(--hot-pink);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+  animation:fadeUp .6s ease both;
+}
+
+.hero-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(2.2rem,8vw,5.5rem);
+  color:var(--black);
+  line-height:1.2;
+  position:relative;
+  display:inline-block;
+  animation:fadeUp .6s .1s ease both;
+}
+
+.hero-title .pink{color:var(--hot-pink);}
+
+.hero-subtitle{
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  font-size:clamp(1.1rem,3vw,1.8rem);
+  color:var(--black);
+  opacity:.6;
+  margin:1rem 0 2rem;
+  animation:fadeUp .6s .2s ease both;
+}
+
+.hero-names{
+  display:inline-flex;
+  align-items:center;
+  gap:1rem;
+  background:var(--black);
+  color:var(--white);
+  font-family:'Press Start 2P',monospace;
+  font-size:.6rem;
+  padding:.8rem 1.5rem;
+  border-radius:0;
+  animation:fadeUp .6s .3s ease both;
+}
+
+.hero-names .heart{color:var(--hot-pink);font-size:1rem;animation:heartbeat 1s infinite;}
+
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* PIXEL HEARTS FLOATING */
+.floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.floater{
+  position:absolute;
+  font-size:1.2rem;
+  animation:float linear infinite;
+  opacity:.4;
+}
+@keyframes float{
+  from{transform:translateY(100vh) rotate(0deg);opacity:.4}
+  to{transform:translateY(-100px) rotate(360deg);opacity:0}
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown-section{
+  position:relative;z-index:1;
+  padding:2rem;
+  display:flex;
+  justify-content:center;
+}
+
+.countdown-card{
+  background:var(--white);
+  border:4px solid var(--black);
+  padding:1.5rem 2rem;
+  max-width:600px;
+  width:100%;
+  position:relative;
+  box-shadow:8px 8px 0 var(--black);
+}
+
+.countdown-card::before{
+  content:'OUR STORY';
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:var(--white);
+  background:var(--hot-pink);
+  padding:.3rem .6rem;
+  position:absolute;
+  top:-14px;left:1rem;
+  border:2px solid var(--black);
+}
+
+.since-date{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:1rem;
+}
+
+.since-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:var(--black);
+  opacity:.5;
+}
+
+.since-input{
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  border:3px solid var(--black);
+  padding:.5rem .8rem;
+  background:var(--light-pink);
+  color:var(--black);
+  outline:none;
+  cursor:pointer;
+}
+
+.cd-row{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.cd-unit{
+  text-align:center;
+  background:var(--hot-pink);
+  color:var(--white);
+  border:3px solid var(--black);
+  padding:.6rem 1rem;
+  min-width:64px;
+  box-shadow:4px 4px 0 var(--black);
+}
+
+.cd-unit .big{
+  font-family:'Press Start 2P',monospace;
+  font-size:1.4rem;
+  display:block;
+  line-height:1;
+}
+
+.cd-unit .sm{
+  font-family:'Press Start 2P',monospace;
+  font-size:.45rem;
+  opacity:.8;
+  margin-top:.3rem;
+  display:block;
+}
+
+.together-label{
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  font-size:1.3rem;
+  color:var(--black);
+  opacity:.7;
+}
+
+/* ===== TABS NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--black);
+  display:flex;
+  overflow-x:auto;
+  scrollbar-width:none;
+  border-bottom:4px solid var(--hot-pink);
+}
+
+.nav::-webkit-scrollbar{display:none;}
+
+.nav-btn{
+  flex-shrink:0;
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  color:rgba(255,255,255,.5);
+  background:transparent;
+  border:none;
+  padding:1.1rem 1.5rem;
+  cursor:pointer;
+  transition:color .2s,background .2s;
+  border-right:2px solid rgba(255,255,255,.1);
+  white-space:nowrap;
+}
+
+.nav-btn:hover{color:var(--pink);}
+.nav-btn.active{color:var(--black);background:var(--hot-pink);}
+
+/* ===== SECTIONS ===== */
+.sections{position:relative;z-index:1;}
+.section{display:none;padding:2.5rem 1.5rem;max-width:760px;margin:0 auto;}
+.section.active{display:block;}
+
+/* SECTION HEADER */
+.sec-header{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+
+.sec-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(1.2rem,4vw,2rem);
+  color:var(--black);
+  line-height:1.3;
+}
+
+.sec-count{
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  background:var(--hot-pink);
+  color:var(--white);
+  padding:.25rem .6rem;
+  border:2px solid var(--black);
+}
+
+/* ADD FORM */
+.add-box{
+  background:var(--white);
+  border:4px solid var(--black);
+  padding:1.5rem;
+  margin-bottom:2rem;
+  box-shadow:6px 6px 0 var(--black);
+  position:relative;
+}
+
+.add-box-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:var(--white);
+  background:var(--black);
+  padding:.3rem .6rem;
+  position:absolute;
+  top:-14px;left:1rem;
+}
+
+.field{
+  width:100%;
+  border:3px solid var(--black);
+  padding:.7rem 1rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;
+  font-weight:500;
+  color:var(--black);
+  background:var(--cream);
+  outline:none;
+  margin-bottom:.8rem;
+  transition:border-color .2s,background .2s;
+  border-radius:0;
+}
+
+.field:focus{
+  border-color:var(--hot-pink);
+  background:var(--white);
+}
+
+.field::placeholder{color:rgba(0,0,0,.35);}
+
+textarea.field{resize:vertical;min-height:80px;}
+
+/* EMOJI ROW */
+.emoji-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem;}
+.e-opt{
+  font-size:1.3rem;
+  cursor:pointer;
+  padding:5px;
+  border:3px solid transparent;
+  transition:border-color .15s,transform .15s;
+  border-radius:0;
+  background:transparent;
+}
+.e-opt:hover{transform:scale(1.2);}
+.e-opt.sel{border-color:var(--hot-pink);background:var(--light-pink);}
+
+/* BUTTONS */
+.btn{
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  border:3px solid var(--black);
+  padding:.7rem 1.3rem;
+  cursor:pointer;
+  transition:transform .1s,box-shadow .1s;
+  box-shadow:4px 4px 0 var(--black);
+  border-radius:0;
+  text-transform:uppercase;
+}
+
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--black);}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--black);}
+
+.btn-pink{background:var(--hot-pink);color:var(--white);}
+.btn-black{background:var(--black);color:var(--white);}
+.btn-white{background:var(--white);color:var(--black);}
+.btn-yellow{background:#FFE600;color:var(--black);}
+
+/* FORM ROW */
+.frow{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;}
+
+select.field{
+  width:auto;
+  padding:.6rem 1rem;
+  margin:0;
+  cursor:pointer;
+}
+
+/* ===== ITEM CARDS ===== */
+.card-grid{display:flex;flex-direction:column;gap:1rem;}
+
+.item{
+  background:var(--white);
+  border:4px solid var(--black);
+  padding:1.2rem 1.2rem 1.2rem 1rem;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:.8rem;
+  align-items:start;
+  box-shadow:5px 5px 0 var(--black);
+  animation:popIn .3s cubic-bezier(.34,1.56,.64,1) both;
+  position:relative;
+  overflow:hidden;
+}
+
+.item::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:6px;
+  background:var(--hot-pink);
+}
+
+@keyframes popIn{
+  from{opacity:0;transform:scale(.9) translateY(10px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.item.done-item::before{background:#aaa;}
+.item.done-item .item-title{text-decoration:line-through;opacity:.4;}
+
+.item-emoji-box{
+  width:48px;height:48px;
+  background:var(--light-pink);
+  border:3px solid var(--black);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  flex-shrink:0;
+}
+
+.item-body{min-width:0;}
+
+.item-title{
+  font-family:'Press Start 2P',monospace;
+  font-size:.65rem;
+  line-height:1.6;
+  margin-bottom:.4rem;
+  word-break:break-word;
+}
+
+.item-desc{
+  font-family:'DM Sans',sans-serif;
+  font-size:.9rem;
+  color:rgba(0,0,0,.6);
+  line-height:1.5;
+  word-break:break-word;
+}
+
+.item-meta{
+  font-family:'Press Start 2P',monospace;
+  font-size:.45rem;
+  color:rgba(0,0,0,.35);
+  margin-top:.5rem;
+}
+
+.item-actions{display:flex;flex-direction:column;gap:.4rem;flex-shrink:0;}
+
+.ico-btn{
+  width:34px;height:34px;
+  border:3px solid var(--black);
+  background:var(--cream);
+  cursor:pointer;
+  font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,transform .1s;
+  box-shadow:2px 2px 0 var(--black);
+}
+
+.ico-btn:hover{background:var(--light-pink);transform:scale(1.1);}
+
+/* TAGS */
+.tag{
+  display:inline-block;
+  font-family:'Press Start 2P',monospace;
+  font-size:.4rem;
+  padding:.25rem .6rem;
+  border:2px solid var(--black);
+  margin-top:.4rem;
+}
+
+.tag-dream{background:var(--light-pink);color:var(--hot-pink);}
+.tag-soon{background:#FFF3D0;color:#B06000;}
+.tag-done{background:#D0FFE8;color:#006B35;}
+
+/* CHECKBOX */
+.check-circle{
+  width:24px;height:24px;
+  border:3px solid var(--black);
+  cursor:pointer;
+  flex-shrink:0;
+  margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;
+  transition:background .2s;
+  background:var(--white);
+}
+
+.check-circle.checked{
+  background:var(--hot-pink);
+  color:var(--white);
+}
+
+/* NOTE CARD */
+.note-item{
+  background:linear-gradient(135deg,#FFFDE7,#FFF9C4);
+  border-color:var(--black);
+}
+
+.note-item::before{background:#FFE600;}
+
+/* EMPTY */
+.empty-state{
+  text-align:center;
+  padding:4rem 1rem;
+}
+
+.empty-state .big{
+  font-family:'Press Start 2P',monospace;
+  font-size:3rem;
+  display:block;
+  margin-bottom:1rem;
+  animation:bounce 1s ease infinite;
+}
+
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.empty-state p{
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  color:rgba(0,0,0,.4);
+  line-height:2;
+}
+
+/* PIXEL DECORATION */
+.pixel-deco{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  font-size:1.5rem;
+  opacity:.12;
+  animation:driftSlow 20s ease-in-out infinite;
+}
+
+@keyframes driftSlow{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  33%{transform:translate(15px,-10px) rotate(5deg)}
+  66%{transform:translate(-10px,8px) rotate(-3deg)}
+}
+
+/* STATUS */
+#status{
+  position:fixed;bottom:1rem;right:1rem;
+  font-family:'Press Start 2P',monospace;
+  font-size:.4rem;
+  padding:.4rem .8rem;
+  border:2px solid var(--black);
+  background:var(--white);
+  z-index:999;
+  box-shadow:3px 3px 0 var(--black);
+}
+
+/* PIXEL WAVE */
+.pixel-wave{
+  width:100%;
+  height:32px;
+  background:var(--hot-pink);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='16' width='8' height='16'/%3E%3Crect x='8' y='8' width='8' height='24'/%3E%3Crect x='16' y='0' width='8' height='32'/%3E%3Crect x='24' y='8' width='8' height='24'/%3E%3C/svg%3E") repeat-x bottom;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='16' width='8' height='16'/%3E%3Crect x='8' y='8' width='8' height='24'/%3E%3Crect x='16' y='0' width='8' height='32'/%3E%3Crect x='24' y='8' width='8' height='24'/%3E%3C/svg%3E") repeat-x bottom;
+  position:relative;z-index:1;
+}
+
+.pink-section{
+  background:var(--hot-pink);
+  position:relative;z-index:1;
+  padding:1rem 2rem;
+  text-align:center;
+}
+
+.pink-section p{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:var(--white);
+  line-height:2;
+}
+
+/* LOADING */
+.loading-txt{
+  font-family:'Press Start 2P',monospace;
+  font-size:.55rem;
+  color:rgba(0,0,0,.3);
+  text-align:center;
+  padding:2rem;
+}
+
+/* ===== IMAGE UPLOAD ===== */
+.img-upload-area{
+  border:3px dashed var(--black);
+  background:var(--cream);
+  padding:1.2rem;
+  text-align:center;
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+  margin-bottom:.8rem;
+  position:relative;
+}
+.img-upload-area:hover{background:var(--light-pink);border-color:var(--hot-pink);}
+.img-upload-area.dragging{background:var(--light-pink);border-color:var(--hot-pink);}
+.img-upload-area input[type=file]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+}
+.img-upload-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:rgba(0,0,0,.4);
+  pointer-events:none;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+}
+.img-upload-label .upload-icon{font-size:1.8rem;}
+
+/* PREVIEW */
+.img-preview-wrap{
+  position:relative;
+  margin-bottom:.8rem;
+  display:inline-block;
+  width:100%;
+}
+.img-preview{
+  width:100%;
+  max-height:200px;
+  object-fit:cover;
+  border:3px solid var(--black);
+  display:block;
+}
+.img-preview-remove{
+  position:absolute;top:6px;right:6px;
+  background:var(--hot-pink);
+  color:var(--white);
+  border:2px solid var(--black);
+  width:28px;height:28px;
+  font-size:.8rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  box-shadow:2px 2px 0 var(--black);
+}
+
+/* UPLOAD PROGRESS */
+.upload-progress{
+  width:100%;
+  height:8px;
+  background:#f0f0f0;
+  border:2px solid var(--black);
+  margin-bottom:.8rem;
+  overflow:hidden;
+  display:none;
+}
+.upload-progress-bar{
+  height:100%;
+  background:var(--hot-pink);
+  width:0%;
+  transition:width .2s;
+}
+
+/* MEMORY IMAGE IN CARD */
+.mem-img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border:3px solid var(--black);
+  display:block;
+  margin-bottom:.6rem;
+  cursor:zoom-in;
+  transition:transform .2s;
+}
+.mem-img:hover{transform:scale(1.01);}
+
+/* LIGHTBOX */
+#lightbox{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.92);
+  z-index:9998;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  padding:1rem;
+}
+#lightbox.open{display:flex;}
+#lightbox img{
+  max-width:100%;
+  max-height:85vh;
+  object-fit:contain;
+  border:4px solid var(--white);
+  box-shadow:8px 8px 0 var(--hot-pink);
+}
+#lightbox-close{
+  position:absolute;top:1rem;right:1rem;
+  background:var(--hot-pink);
+  color:var(--white);
+  border:3px solid var(--white);
+  width:42px;height:42px;
+  font-size:1.2rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;
+  box-shadow:4px 4px 0 rgba(255,255,255,.3);
+  font-family:'Press Start 2P',monospace;
+}
+#lightbox-caption{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:rgba(255,255,255,.6);
+  margin-top:.8rem;
+  text-align:center;
+}
+
+/* NOTE IMAGE */
+.note-img{
+  width:100%;
+  max-height:160px;
+  object-fit:cover;
+  border:3px solid var(--black);
+  display:block;
+  margin-bottom:.5rem;
+  cursor:zoom-in;
+}
+
+@media(max-width:480px){
+  .img-upload-label{font-size:.42rem;}
+  .img-upload-label .upload-icon{font-size:1.5rem;}
+  .mem-img{max-height:180px;}
+}
+
+/* ===== RESPONSIVE — TABLET ===== */
+@media(max-width:768px){
+  .hero{padding:3.5rem 1.2rem 3rem;}
+  .hero-title{font-size:clamp(1.8rem,10vw,3.5rem);}
+  .hero-subtitle{font-size:1.1rem;}
+  .hero-names{font-size:.5rem;gap:.6rem;padding:.7rem 1rem;}
+  .countdown-section{padding:1.5rem 1rem;}
+  .countdown-card{padding:1.2rem 1rem;}
+  .cd-unit{min-width:52px;padding:.5rem .6rem;}
+  .cd-unit .big{font-size:1.1rem;}
+  .cd-unit .sm{font-size:.38rem;}
+  .together-label{font-size:1rem;}
+  .section{padding:1.5rem 1rem;}
+  .sec-title{font-size:clamp(1rem,5vw,1.6rem);}
+  .add-box{padding:1.2rem 1rem;}
+  .item{padding:1rem;}
+  .item-title{font-size:.55rem;}
+}
+
+/* ===== RESPONSIVE — MOBILE ===== */
+@media(max-width:480px){
+  /* hide cursor on touch */
+  body{cursor:auto;}
+  #cursor{display:none;}
+
+  /* marquee smaller */
+  .marquee-track span{font-size:.5rem;margin:0 1.2rem;}
+
+  /* hero */
+  .hero{padding:2.5rem 1rem 2.5rem;}
+  .hero-eyebrow{font-size:.45rem;letter-spacing:.08em;margin-bottom:1rem;}
+  .hero-title{font-size:clamp(1.5rem,11vw,2.8rem);}
+  .hero-subtitle{font-size:1rem;margin:.8rem 0 1.5rem;}
+  .hero-names{
+    font-size:.42rem;
+    gap:.5rem;
+    padding:.6rem .9rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    text-align:center;
+  }
+
+  /* countdown */
+  .countdown-section{padding:1rem .8rem;}
+  .countdown-card{padding:1.2rem .9rem;box-shadow:5px 5px 0 var(--black);}
+  .since-date{flex-direction:column;align-items:flex-start;gap:.5rem;}
+  .since-label{font-size:.42rem;}
+  .since-input{font-size:.45rem;padding:.45rem .6rem;width:100%;}
+  .cd-row{gap:.5rem;justify-content:flex-start;}
+  .cd-unit{
+    min-width:0;
+    flex:1;
+    padding:.5rem .3rem;
+    box-shadow:3px 3px 0 var(--black);
+  }
+  .cd-unit .big{font-size:.95rem;}
+  .cd-unit .sm{font-size:.35rem;}
+  .together-label{
+    font-size:.85rem;
+    width:100%;
+    margin-top:.3rem;
+  }
+
+  /* pink section text */
+  .pink-section p{font-size:.4rem;line-height:2.2;}
+
+  /* nav */
+  .nav-btn{font-size:.42rem;padding:.9rem .9rem;}
+
+  /* sections */
+  .section{padding:1.2rem .8rem;}
+  .sec-header{margin-bottom:1.2rem;gap:.6rem;}
+  .sec-title{font-size:clamp(.9rem,6vw,1.4rem);}
+  .sec-count{font-size:.42rem;padding:.2rem .5rem;}
+
+  /* form box */
+  .add-box{
+    padding:1rem .9rem;
+    box-shadow:4px 4px 0 var(--black);
+    margin-bottom:1.5rem;
+  }
+  .add-box-label{font-size:.42rem;top:-12px;}
+
+  /* fields */
+  .field{
+    font-size:.95rem;
+    padding:.65rem .85rem;
+    border-width:2.5px;
+    margin-bottom:.65rem;
+  }
+
+  textarea.field{min-height:70px;}
+
+  /* emoji row — scrollable on mobile */
+  .emoji-row{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:.3rem;
+    -webkit-overflow-scrolling:touch;
+    gap:.3rem;
+  }
+  .emoji-row::-webkit-scrollbar{display:none;}
+  .e-opt{font-size:1.2rem;padding:4px;border-width:2px;}
+
+  /* buttons */
+  .btn{
+    font-size:.45rem;
+    padding:.65rem 1rem;
+    box-shadow:3px 3px 0 var(--black);
+  }
+
+  /* form row — stack on mobile */
+  .frow{gap:.5rem;}
+  .frow input[type="date"]{width:100%;margin:0 0 .3rem 0;}
+  .frow .btn{width:100%;}
+  .frow select{width:100%;margin:0 0 .3rem 0;}
+
+  /* ITEM CARDS */
+  .item{
+    grid-template-columns:42px 1fr;
+    grid-template-rows:auto auto;
+    gap:.6rem .7rem;
+    padding:.9rem .9rem .9rem .7rem;
+    box-shadow:4px 4px 0 var(--black);
+    border-width:3px;
+  }
+
+  .item::before{width:5px;}
+
+  .item-emoji-box{
+    width:42px;height:42px;
+    font-size:1.2rem;
+    border-width:2px;
+  }
+
+  .item-body{grid-column:2/3;}
+
+  /* actions go full width below */
+  .item-actions{
+    grid-column:1/-1;
+    flex-direction:row;
+    gap:.4rem;
+    padding-top:.3rem;
+    border-top:1.5px dashed rgba(0,0,0,.1);
+  }
+
+  .ico-btn{
+    width:36px;height:36px;
+    font-size:.95rem;
+    border-width:2px;
+    box-shadow:2px 2px 0 var(--black);
+  }
+
+  .item-title{font-size:.52rem;line-height:1.7;}
+  .item-desc{font-size:.88rem;}
+  .item-meta{font-size:.4rem;}
+
+  /* todo check circle bigger for touch */
+  .check-circle{
+    width:28px;height:28px;
+    border-width:2.5px;
+    font-size:.9rem;
+    margin-top:0;
+  }
+
+  /* tags */
+  .tag{font-size:.38rem;padding:.22rem .5rem;}
+
+  /* empty state */
+  .empty-state{padding:2.5rem .5rem;}
+  .empty-state .big{font-size:2.5rem;}
+  .empty-state p{font-size:.45rem;}
+
+  /* status badge */
+  #status{
+    font-size:.35rem;
+    padding:.35rem .65rem;
+    bottom:.6rem;right:.6rem;
+    box-shadow:2px 2px 0 var(--black);
+  }
+
+  /* pixel deco — hide on small screens */
+  .pixel-deco{display:none;}
+
+  /* footer */
+  .pink-section{padding:1.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- Pixel decorations -->
+<span class="pixel-deco" style="top:10%;left:5%">♥</span>
+<span class="pixel-deco" style="top:30%;right:3%;animation-delay:-5s">★</span>
+<span class="pixel-deco" style="top:60%;left:2%;animation-delay:-10s">♥</span>
+<span class="pixel-deco" style="top:80%;right:6%;animation-delay:-15s">★</span>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>MEMOIR</span><span>♥</span><span>SHUBHAM + TAMALIKA</span><span>★</span>
+    <span>CHONU MONU</span><span>♥</span><span>OUR UNIVERSE</span><span>★</span>
+    <span>MEMOIR</span><span>♥</span><span>SHUBHAM + TAMALIKA</span><span>★</span>
+    <span>CHONU MONU</span><span>♥</span><span>OUR UNIVERSE</span><span>★</span>
+    <span>MEMOIR</span><span>♥</span><span>SHUBHAM + TAMALIKA</span><span>★</span>
+    <span>CHONU MONU</span><span>♥</span><span>OUR UNIVERSE</span><span>★</span>
+    <span>MEMOIR</span><span>♥</span><span>SHUBHAM + TAMALIKA</span><span>★</span>
+    <span>CHONU MONU</span><span>♥</span><span>OUR UNIVERSE</span><span>★</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="floaters" id="floaters"></div>
+  <div class="hero-eyebrow">est. the day we found each other</div>
+  <h1 class="hero-title">MEM<span class="pink">♥</span>IR</h1>
+  <p class="hero-subtitle">every moment, forever saved</p>
+  <div class="hero-names">
+    <span>SHUBHAM</span>
+    <span class="heart">♥</span>
+    <span>TAMALIKA</span>
+  </div>
+  <br/><br/>
+  <span style="font-family:'Press Start 2P',monospace;font-size:.45rem;color:rgba(0,0,0,.3);">aka chonu monu 🐣</span>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <div class="countdown-card">
+    <div class="since-date">
+      <span class="since-label">TOGETHER SINCE →</span>
+      <input type="date" class="since-input" id="anniv-input" />
+    </div>
+    <div class="cd-row" id="cd-row">
+      <span style="font-family:'Press Start 2P',monospace;font-size:.5rem;opacity:.3;">← SET YOUR DATE 💕</span>
+    </div>
+    <div id="cd-anniv" style="margin-top:.8rem;"></div>
+  </div>
+</div>
+
+<!-- PINK WAVE -->
+<div class="pixel-wave" style="transform:rotate(180deg);margin-top:2rem;"></div>
+<div class="pink-section">
+  <p>EVERY MEMORY IS A TREASURE &nbsp;♥&nbsp; EVERY DREAM IS WORTH CHASING &nbsp;★&nbsp; THIS IS OURS</p>
+</div>
+<div class="pixel-wave"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" data-s="memories">📸 MEMORIES</button>
+  <button class="nav-btn" data-s="todos">✅ TO-DO</button>
+  <button class="nav-btn" data-s="bucket">🌙 BUCKET LIST</button>
+  <button class="nav-btn" data-s="notes">💌 LOVE NOTES</button>
+</nav>
+
+<!-- SECTIONS -->
+<div class="sections">
+
+  <!-- MEMORIES -->
+  <div class="section active" id="s-memories">
+    <div class="sec-header">
+      <span class="sec-title">MEMORIES</span>
+      <span class="sec-count" id="count-memories">0</span>
+    </div>
+    <div class="add-box">
+      <span class="add-box-label">ADD NEW</span>
+      <div class="emoji-row" id="mem-emoji-row">
+        <span class="e-opt sel" data-e="📸">📸</span>
+        <span class="e-opt" data-e="❤️">❤️</span>
+        <span class="e-opt" data-e="🌅">🌅</span>
+        <span class="e-opt" data-e="🎉">🎉</span>
+        <span class="e-opt" data-e="🍜">🍜</span>
+        <span class="e-opt" data-e="✈️">✈️</span>
+        <span class="e-opt" data-e="🎵">🎵</span>
+        <span class="e-opt" data-e="🌊">🌊</span>
+        <span class="e-opt" data-e="🌙">🌙</span>
+        <span class="e-opt" data-e="⭐">⭐</span>
+        <span class="e-opt" data-e="🎂">🎂</span>
+        <span class="e-opt" data-e="🌸">🌸</span>
+      </div>
+      <input class="field" id="m-title" placeholder="Name this memory..." maxlength="80"/>
+      <textarea class="field" id="m-desc" placeholder="Tell the whole story... every little detail 💕" rows="3"></textarea>
+      <!-- IMAGE UPLOAD -->
+      <div class="img-upload-area" id="m-drop-zone">
+        <input type="file" id="m-img-input" accept="image/*"/>
+        <div class="img-upload-label">
+          <span class="upload-icon">📷</span>
+          <span>TAP TO ADD A PHOTO</span>
+          <span style="font-size:.38rem;margin-top:.2rem;opacity:.6;">JPG, PNG, WEBP — MAX 5MB</span>
+        </div>
+      </div>
+      <div id="m-img-preview-wrap" style="display:none;">
+        <div class="img-preview-wrap">
+          <img class="img-preview" id="m-img-preview" src="" alt="preview"/>
+          <button class="img-preview-remove" onclick="clearMemImg()" title="Remove">✕</button>
+        </div>
+      </div>
+      <div class="upload-progress" id="m-progress"><div class="upload-progress-bar" id="m-progress-bar"></div></div>
+      <div class="frow">
+        <input type="date" class="field" id="m-date" style="width:auto;margin:0;"/>
+        <button class="btn btn-pink" onclick="addMemory()">SAVE IT ♥</button>
+      </div>
+    </div>
+    <div class="card-grid" id="list-memories"><div class="loading-txt">loading...</div></div>
+  </div>
+
+  <!-- TODOS -->
+  <div class="section" id="s-todos">
+    <div class="sec-header">
+      <span class="sec-title">TO-DO</span>
+      <span class="sec-count" id="count-todos">0</span>
+    </div>
+    <div class="add-box">
+      <span class="add-box-label">ADD TASK</span>
+      <input class="field" id="t-title" placeholder="Something we need to do..." maxlength="100"/>
+      <input class="field" id="t-desc" placeholder="Details (optional)" maxlength="200"/>
+      <button class="btn btn-black" onclick="addTodo()">ADD TASK ★</button>
+    </div>
+    <div class="card-grid" id="list-todos"><div class="loading-txt">loading...</div></div>
+  </div>
+
+  <!-- BUCKET LIST -->
+  <div class="section" id="s-bucket">
+    <div class="sec-header">
+      <span class="sec-title">BUCKET LIST</span>
+      <span class="sec-count" id="count-bucket">0</span>
+    </div>
+    <div class="add-box">
+      <span class="add-box-label">ADD DREAM</span>
+      <input class="field" id="b-title" placeholder="Something we MUST do together..." maxlength="100"/>
+      <textarea class="field" id="b-desc" placeholder="Why is this on our list? 🌟" rows="2"></textarea>
+      <div class="frow">
+        <select class="field" id="b-tag">
+          <option value="dream">🌙 Dream</option>
+          <option value="soon">🔥 Do It Soon</option>
+          <option value="done">✅ Done!</option>
+        </select>
+        <button class="btn btn-pink" onclick="addBucket()">ADD DREAM ♥</button>
+      </div>
+    </div>
+    <div class="card-grid" id="list-bucket"><div class="loading-txt">loading...</div></div>
+  </div>
+
+  <!-- LOVE NOTES -->
+  <div class="section" id="s-notes">
+    <div class="sec-header">
+      <span class="sec-title">LOVE NOTES</span>
+      <span class="sec-count" id="count-notes">0</span>
+    </div>
+    <div class="add-box">
+      <span class="add-box-label">WRITE A NOTE</span>
+      <input class="field" id="n-from" placeholder="From (your name)..." maxlength="40"/>
+      <textarea class="field" id="n-text" placeholder="Say something sweet... 🍬 make them smile" rows="3"></textarea>
+      <!-- IMAGE UPLOAD -->
+      <div class="img-upload-area" id="n-drop-zone">
+        <input type="file" id="n-img-input" accept="image/*"/>
+        <div class="img-upload-label">
+          <span class="upload-icon">🖼️</span>
+          <span>ADD A PHOTO (OPTIONAL)</span>
+        </div>
+      </div>
+      <div id="n-img-preview-wrap" style="display:none;">
+        <div class="img-preview-wrap">
+          <img class="img-preview" id="n-img-preview" src="" alt="preview"/>
+          <button class="img-preview-remove" onclick="clearNoteImg()" title="Remove">✕</button>
+        </div>
+      </div>
+      <div class="upload-progress" id="n-progress"><div class="upload-progress-bar" id="n-progress-bar"></div></div>
+      <button class="btn btn-yellow" onclick="addNote()">SEND NOTE 💌</button>
+    </div>
+    <div class="card-grid" id="list-notes"><div class="loading-txt">loading...</div></div>
+  </div>
+
+</div>
+
+<!-- FOOTER WAVE -->
+<div class="pixel-wave" style="transform:rotate(180deg);margin-top:3rem;"></div>
+<div class="pink-section" style="padding:2rem;">
+  <p>MEMOIR &nbsp;♥&nbsp; MADE WITH LOVE FOR CHONU MONU</p>
+  <p style="margin-top:.5rem;opacity:.7;">SHUBHAM + TAMALIKA = ♥ FOREVER</p>
+</div>
+
+<div id="status">⚡ CONNECTING...</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+<script>
+// ================================================
+// 🔥 FIREBASE CONFIG — Replace with your own!
+// ================================================
+const fbConfig = {
+  apiKey:"YOUR_API_KEY",
+  authDomain:"YOUR_PROJECT.firebaseapp.com",
+  projectId:"YOUR_PROJECT_ID",
+  storageBucket:"YOUR_PROJECT.appspot.com",
+  messagingSenderId:"YOUR_SENDER_ID",
+  appId:"YOUR_APP_ID"
+};
+
+let db=null,storage=null;
+try{
+  firebase.initializeApp(fbConfig);
+  db=firebase.firestore();
+  storage=firebase.storage();
+  setStatus('🟢 CONNECTED');
+}catch(e){
+  setStatus('🔴 DEMO MODE');
+}
+
+function isLive(){return db&&fbConfig.apiKey!=="YOUR_API_KEY";}
+
+function setStatus(t){
+  const s=document.getElementById('status');
+  if(s)s.textContent=t;
+}
+
+// ================================================
+// CURSOR
+// ================================================
+document.addEventListener('mousemove',e=>{
+  const c=document.getElementById('cursor');
+  if(c){c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';}
+});
+
+// ================================================
+// FLOATING HEARTS
+// ================================================
+const fContainer=document.getElementById('floaters');
+const fSymbols=['♥','★','✦','♡','☆'];
+for(let i=0;i<18;i++){
+  const f=document.createElement('span');
+  f.className='floater';
+  f.textContent=fSymbols[i%fSymbols.length];
+  f.style.left=Math.random()*100+'%';
+  f.style.animationDuration=(8+Math.random()*12)+'s';
+  f.style.animationDelay=(Math.random()*10)+'s';
+  f.style.fontSize=(0.6+Math.random()*1)+'rem';
+  f.style.color=i%2===0?'var(--hot-pink)':'var(--black)';
+  fContainer.appendChild(f);
+}
+
+// ================================================
+// TABS
+// ================================================
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('s-'+btn.dataset.s).classList.add('active');
+  });
+});
+
+// ================================================
+// EMOJI PICKER
+// ================================================
+let chosenEmoji='📸';
+document.querySelectorAll('.e-opt').forEach(o=>{
+  o.addEventListener('click',()=>{
+    document.querySelectorAll('.e-opt').forEach(x=>x.classList.remove('sel'));
+    o.classList.add('sel');
+    chosenEmoji=o.dataset.e;
+  });
+});
+
+// ================================================
+// COUNTDOWN
+// ================================================
+const saved=localStorage.getItem('memoir_date');
+if(saved){document.getElementById('anniv-input').value=saved;tick(saved);}
+document.getElementById('anniv-input').addEventListener('change',e=>{
+  localStorage.setItem('memoir_date',e.target.value);
+  tick(e.target.value);
+});
+
+function tick(ds){
+  const start=new Date(ds);const now=new Date();
+  const diff=now-start;if(diff<0){renderCD(0,0,0,0);return;}
+  const totalD=Math.floor(diff/864e5);
+  const h=Math.floor((diff%864e5)/36e5);
+  const m=Math.floor((diff%36e5)/6e4);
+  const s=Math.floor((diff%6e4)/1e3);
+  renderCD(totalD,h,m,s);
+
+  const nextA=new Date(start);
+  nextA.setFullYear(now.getFullYear());
+  if(nextA<=now)nextA.setFullYear(now.getFullYear()+1);
+  const till=nextA-now;
+  const ad=Math.floor(till/864e5);
+  const el=document.getElementById('cd-anniv');
+  if(el){
+    el.innerHTML=`<span style="font-family:'Press Start 2P',monospace;font-size:.45rem;color:rgba(0,0,0,.4)">NEXT ANNIVERSARY IN ${ad} DAYS ✨</span>`;
+  }
+}
+
+function renderCD(d,h,m,s){
+  document.getElementById('cd-row').innerHTML=`
+    <div class="cd-unit"><span class="big">${d}</span><span class="sm">DAYS</span></div>
+    <div class="cd-unit"><span class="big">${h}</span><span class="sm">HRS</span></div>
+    <div class="cd-unit"><span class="big">${m}</span><span class="sm">MIN</span></div>
+    <div class="cd-unit"><span class="big">${s}</span><span class="sm">SEC</span></div>
+    <span class="together-label">together &amp; counting 💕</span>
+  `;
+}
+
+setInterval(()=>{const d=localStorage.getItem('memoir_date');if(d)tick(d);},1000);
+
+// ================================================
+// LOCAL STATE (demo mode)
+// ================================================
+const local={memories:[],todos:[],bucket:[],notes:[]};
+
+// ================================================
+// IMAGE UPLOAD HELPERS
+// ================================================
+let memImgFile=null, noteImgFile=null;
+
+function setupDropZone(zoneId,inputId,previewId,previewWrapId,fileVar){
+  const zone=document.getElementById(zoneId);
+  const input=document.getElementById(inputId);
+  if(!zone||!input)return;
+  input.addEventListener('change',e=>{
+    const f=e.target.files[0];
+    if(f)handleImgFile(f,previewId,previewWrapId,fileVar);
+  });
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('dragging');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('dragging'));
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();zone.classList.remove('dragging');
+    const f=e.dataTransfer.files[0];
+    if(f&&f.type.startsWith('image/'))handleImgFile(f,previewId,previewWrapId,fileVar);
+  });
+}
+
+function handleImgFile(file,previewId,previewWrapId,varName){
+  if(file.size>5*1024*1024)return flash('Image too large! Max 5MB 📦');
+  if(varName==='mem')memImgFile=file;
+  else noteImgFile=file;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    document.getElementById(previewId).src=e.target.result;
+    document.getElementById(previewWrapId).style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearMemImg(){
+  memImgFile=null;
+  document.getElementById('m-img-preview-wrap').style.display='none';
+  document.getElementById('m-img-input').value='';
+}
+
+function clearNoteImg(){
+  noteImgFile=null;
+  document.getElementById('n-img-preview-wrap').style.display='none';
+  document.getElementById('n-img-input').value='';
+}
+
+async function uploadImg(file,path,progressBarId,progressWrapId){
+  if(!file)return null;
+  // If Firebase Storage not available, convert to base64 data URL (demo mode)
+  if(!storage||!isLive()){
+    return new Promise(res=>{
+      const r=new FileReader();
+      r.onload=e=>res(e.target.result);
+      r.readAsDataURL(file);
+    });
+  }
+  return new Promise((res,rej)=>{
+    const wrap=document.getElementById(progressWrapId);
+    const bar=document.getElementById(progressBarId);
+    if(wrap)wrap.style.display='block';
+    const ref=storage.ref(path);
+    const task=ref.put(file);
+    task.on('state_changed',
+      snap=>{const pct=Math.round(snap.bytesTransferred/snap.totalBytes*100);if(bar)bar.style.width=pct+'%';},
+      err=>{if(wrap)wrap.style.display='none';rej(err);},
+      async()=>{
+        const url=await task.snapshot.ref.getDownloadURL();
+        if(wrap)wrap.style.display='none';
+        if(bar)bar.style.width='0%';
+        res(url);
+      }
+    );
+  });
+}
+
+// LIGHTBOX
+function openLightbox(src,caption){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox-caption').textContent=caption||'';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+setupDropZone('m-drop-zone','m-img-input','m-img-preview','m-img-preview-wrap','mem');
+setupDropZone('n-drop-zone','n-img-input','n-img-preview','n-img-preview-wrap','note');
+
+// ================================================
+// MEMORIES
+// ================================================
+async function addMemory(){
+  const title=document.getElementById('m-title').value.trim();
+  const desc=document.getElementById('m-desc').value.trim();
+  const date=document.getElementById('m-date').value||new Date().toISOString().split('T')[0];
+  if(!title)return flash('Give this memory a title! 📸');
+
+  const btn=document.querySelector('#s-memories .btn-pink');
+  btn.textContent='SAVING...';btn.disabled=true;
+
+  let imgUrl=null;
+  if(memImgFile){
+    const path=`memories/${Date.now()}_${memImgFile.name}`;
+    imgUrl=await uploadImg(memImgFile,path,'m-progress-bar','m-progress');
+  }
+
+  const item={emoji:chosenEmoji,title,desc,date,imgUrl,createdAt:new Date().toISOString()};
+  btn.textContent='SAVE IT ♥';btn.disabled=false;
+
+  if(isLive()){
+    db.collection('memories').add(item).then(()=>{
+      clear(['m-title','m-desc','m-date']);clearMemImg();
+    });
+  }else{
+    item.id=Date.now()+'';
+    local.memories.unshift(item);
+    renderMemories(local.memories);
+    clear(['m-title','m-desc','m-date']);clearMemImg();
+  }
+}
+
+function delMemory(id){
+  if(!confirm('Delete this memory? 💔'))return;
+  if(isLive())db.collection('memories').doc(id).delete();
+  else{local.memories=local.memories.filter(x=>x.id!==id);renderMemories(local.memories);}
+}
+
+function renderMemories(items){
+  const el=document.getElementById('list-memories');
+  document.getElementById('count-memories').textContent=items.length;
+  if(!items.length){el.innerHTML=emptyState('📷','NO MEMORIES YET','go create something beautiful together');return;}
+  el.innerHTML=items.map(m=>`
+    <div class="item" style="grid-template-columns:1fr;padding-left:1.2rem;">
+      ${m.imgUrl?`<img class="mem-img" src="${m.imgUrl}" alt="${esc(m.title)}" onclick="openLightbox('${m.imgUrl}','${esc(m.title)}')"/>`:'' }
+      <div style="display:grid;grid-template-columns:42px 1fr auto;gap:.7rem;align-items:start;">
+        <div class="item-emoji-box">${m.emoji||'📸'}</div>
+        <div class="item-body">
+          <div class="item-title">${esc(m.title)}</div>
+          ${m.desc?`<div class="item-desc">${esc(m.desc)}</div>`:''}
+          <div class="item-meta">📅 ${m.date}</div>
+        </div>
+        <div class="item-actions">
+          <button class="ico-btn" onclick="delMemory('${m.id}')" title="Delete">🗑</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ================================================
+// TODOS
+// ================================================
+function addTodo(){
+  const title=document.getElementById('t-title').value.trim();
+  const desc=document.getElementById('t-desc').value.trim();
+  if(!title)return flash('What do we need to do? 🤔');
+  const item={title,desc,done:false,createdAt:new Date().toISOString()};
+  if(isLive()){db.collection('todos').add(item).then(()=>clear(['t-title','t-desc']));}
+  else{item.id=Date.now()+'';local.todos.unshift(item);renderTodos(local.todos);clear(['t-title','t-desc']);}
+}
+
+function toggleTodo(id){
+  if(isLive()){db.collection('todos').doc(id).get().then(d=>db.collection('todos').doc(id).update({done:!d.data().done}));}
+  else{const x=local.todos.find(t=>t.id===id);if(x)x.done=!x.done;renderTodos(local.todos);}
+}
+
+function delTodo(id){
+  if(isLive())db.collection('todos').doc(id).delete();
+  else{local.todos=local.todos.filter(x=>x.id!==id);renderTodos(local.todos);}
+}
+
+function renderTodos(items){
+  const el=document.getElementById('list-todos');
+  document.getElementById('count-todos').textContent=items.length;
+  if(!items.length){el.innerHTML=emptyState('✅','ALL CLEAR!','nothing to do — go enjoy each other');return;}
+  el.innerHTML=items.map(t=>`
+    <div class="item${t.done?' done-item':''}">
+      <div class="check-circle${t.done?' checked':''}" onclick="toggleTodo('${t.id}')">${t.done?'✓':''}</div>
+      <div class="item-body">
+        <div class="item-title">${esc(t.title)}</div>
+        ${t.desc?`<div class="item-desc">${esc(t.desc)}</div>`:''}
+      </div>
+      <div class="item-actions">
+        <button class="ico-btn" onclick="delTodo('${t.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ================================================
+// BUCKET LIST
+// ================================================
+function addBucket(){
+  const title=document.getElementById('b-title').value.trim();
+  const desc=document.getElementById('b-desc').value.trim();
+  const tag=document.getElementById('b-tag').value;
+  if(!title)return flash('Name our dream! 🌙');
+  const item={title,desc,tag,createdAt:new Date().toISOString()};
+  if(isLive()){db.collection('bucket').add(item).then(()=>clear(['b-title','b-desc']));}
+  else{item.id=Date.now()+'';local.bucket.unshift(item);renderBucket(local.bucket);clear(['b-title','b-desc']);}
+}
+
+function delBucket(id){
+  if(isLive())db.collection('bucket').doc(id).delete();
+  else{local.bucket=local.bucket.filter(x=>x.id!==id);renderBucket(local.bucket);}
+}
+
+function doneBucket(id){
+  if(isLive())db.collection('bucket').doc(id).update({tag:'done'});
+  else{const x=local.bucket.find(b=>b.id===id);if(x)x.tag='done';renderBucket(local.bucket);}
+}
+
+const tagMap={dream:{cls:'tag-dream',lbl:'🌙 DREAM'},soon:{cls:'tag-soon',lbl:'🔥 DO IT SOON'},done:{cls:'tag-done',lbl:'✅ DONE!'}};
+
+function renderBucket(items){
+  const el=document.getElementById('list-bucket');
+  document.getElementById('count-bucket').textContent=items.length;
+  if(!items.length){el.innerHTML=emptyState('🌙','DREAM BIG','add your first bucket list item');return;}
+  el.innerHTML=items.map(b=>{
+    const t=tagMap[b.tag]||tagMap.dream;
+    return `<div class="item">
+      <div class="item-emoji-box">🪣</div>
+      <div class="item-body">
+        <div class="item-title">${esc(b.title)}</div>
+        ${b.desc?`<div class="item-desc">${esc(b.desc)}</div>`:''}
+        <span class="tag ${t.cls}">${t.lbl}</span>
+      </div>
+      <div class="item-actions">
+        ${b.tag!=='done'?`<button class="ico-btn" onclick="doneBucket('${b.id}')" title="Mark done">✅</button>`:''}
+        <button class="ico-btn" onclick="delBucket('${b.id}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ================================================
+// LOVE NOTES
+// ================================================
+function addNote(){
+  const from=document.getElementById('n-from').value.trim();
+  const text=document.getElementById('n-text').value.trim();
+  if(!text)return flash('Write something sweet! 🍬');
+  const item={from:from||'Someone who loves you 💕',text,createdAt:new Date().toISOString()};
+  if(isLive()){db.collection('notes').add(item).then(()=>clear(['n-from','n-text']));}
+  else{item.id=Date.now()+'';local.notes.unshift(item);renderNotes(local.notes);clear(['n-from','n-text']);}
+}
+
+function delNote(id){
+  if(isLive())db.collection('notes').doc(id).delete();
+  else{local.notes=local.notes.filter(x=>x.id!==id);renderNotes(local.notes);}
+}
+
+function renderNotes(items){
+  const el=document.getElementById('list-notes');
+  document.getElementById('count-notes').textContent=items.length;
+  if(!items.length){el.innerHTML=emptyState('💌','NO NOTES YET','leave one — make them smile today');return;}
+  el.innerHTML=items.map(n=>`
+    <div class="item note-item">
+      <div class="item-emoji-box" style="background:#FFF9C4;">💌</div>
+      <div class="item-body">
+        <div class="item-title">${esc(n.from)}</div>
+        <div class="item-desc">${esc(n.text)}</div>
+        <div class="item-meta">${new Date(n.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+      </div>
+      <div class="item-actions">
+        <button class="ico-btn" onclick="delNote('${n.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ================================================
+// FIRESTORE LISTENERS
+// ================================================
+function initListeners(){
+  if(!isLive()){renderMemories([]);renderTodos([]);renderBucket([]);renderNotes([]);return;}
+  db.collection('memories').orderBy('createdAt','desc').onSnapshot(s=>{renderMemories(s.docs.map(d=>({id:d.id,...d.data()})));});
+  db.collection('todos').orderBy('createdAt','desc').onSnapshot(s=>{renderTodos(s.docs.map(d=>({id:d.id,...d.data()})));});
+  db.collection('bucket').orderBy('createdAt','desc').onSnapshot(s=>{renderBucket(s.docs.map(d=>({id:d.id,...d.data()})));});
+  db.collection('notes').orderBy('createdAt','desc').onSnapshot(s=>{renderNotes(s.docs.map(d=>({id:d.id,...d.data()})));});
+}
+
+// ================================================
+// UTILS
+// ================================================
+function clear(ids){ids.forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});}
+function esc(s){return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):'';} 
+function flash(msg){alert(msg);}
+function emptyState(emoji,title,sub){
+  return `<div class="empty-state"><span class="big">${emoji}</span>
+    <p>${title}</p><p style="margin-top:.5rem;font-size:.4rem;">${sub}</p></div>`;
+}
+
+const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "your-app.firebaseapp.com",
+  projectId: "your-app",
+  storageBucket: "your-app.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456:web:abcdef"
+};
+
+initListeners();
+
+
+
+</script>
+</body>
+</html>
