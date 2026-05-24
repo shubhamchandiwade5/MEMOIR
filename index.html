@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>MEMOIR — Shubham & Tamalika</title>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="apple-touch-icon" href="favicon.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -54,9 +56,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .nav-btn{flex-shrink:0;font-family:'Press Start 2P',monospace;font-size:.55rem;color:rgba(255,255,255,.5);background:transparent;border:none;padding:1.1rem 1.5rem;cursor:pointer;transition:color .2s,background .2s;border-right:2px solid rgba(255,255,255,.1);white-space:nowrap;}
 .nav-btn:hover{color:var(--pink);}
 .nav-btn.active{color:var(--black);background:var(--hot-pink);}
-.sections{position:relative;z-index:1;}
-.section{display:none;padding:2.5rem 1.5rem;max-width:760px;margin:0 auto;}
-.section.active{display:block;}
+.sections{position:relative;z-index:1;background:var(--cream);min-height:60vh;}
+.section{display:none !important;padding:2.5rem 1.5rem;max-width:760px;margin:0 auto;}
+.section.active{display:block !important;}
 .sec-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
 .sec-title{font-family:'Press Start 2P',monospace;font-size:clamp(1.2rem,4vw,2rem);color:var(--black);line-height:1.3;}
 .sec-count{font-family:'Press Start 2P',monospace;font-size:.55rem;background:var(--hot-pink);color:var(--white);padding:.25rem .6rem;border:2px solid var(--black);}
@@ -107,6 +109,90 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
 .empty-state p{font-family:'Press Start 2P',monospace;font-size:.55rem;color:rgba(0,0,0,.4);line-height:2;}
 .pixel-deco{position:fixed;pointer-events:none;z-index:0;font-size:1.5rem;opacity:.12;animation:driftSlow 20s ease-in-out infinite;}
 @keyframes driftSlow{0%,100%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(15px,-10px) rotate(5deg)}66%{transform:translate(-10px,8px) rotate(-3deg)}}
+
+/* YEAR FOLDERS */
+.year-folder{
+  margin-bottom:1.5rem;
+  border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);
+  overflow:visible;
+}
+
+.year-folder-tab{
+  display:inline-block;
+  background:var(--hot-pink);
+  border:4px solid var(--black);
+  border-bottom:none;
+  padding:.4rem 1.2rem;
+  margin-left:16px;
+  position:relative;
+  bottom:-4px;
+  border-radius:4px 4px 0 0;
+}
+
+.year-tab-label{
+  font-family:'Press Start 2P',monospace;
+  font-size:.6rem;
+  color:var(--white);
+}
+
+.year-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1rem 1.4rem;
+  background:var(--hot-pink);
+  border-top:4px solid var(--black);
+  cursor:pointer;
+  user-select:none;
+  transition:filter .15s;
+}
+
+.year-header:hover{filter:brightness(1.1);}
+
+.year-header-left{display:flex;align-items:center;gap:.8rem;}
+
+.year-count{
+  font-family:'Press Start 2P',monospace;
+  font-size:.38rem;
+  color:var(--white);
+  background:rgba(0,0,0,.25);
+  border:2px solid rgba(255,255,255,.3);
+  padding:.2rem .5rem;
+}
+
+.year-arrow{
+  font-family:'Press Start 2P',monospace;
+  font-size:.5rem;
+  color:var(--white);
+}
+
+.year-content{
+  display:none;
+  flex-direction:column;
+  gap:.8rem;
+  padding:1.2rem;
+  background:#FFF0F6;
+  border-top:3px dashed rgba(255,45,120,.3);
+}
+
+.year-content.open{display:flex;}
+
+.mem-card{
+  background:var(--white) !important;
+  border:3px solid var(--black) !important;
+  box-shadow:3px 3px 0 var(--black) !important;
+  grid-template-columns:auto 1fr !important;
+}
+
+@media(max-width:480px){
+  .year-tab-label{font-size:.42rem;}
+  .year-count{font-size:.3rem;}
+  .year-header{padding:.8rem 1rem;}
+  .year-folder-tab{margin-left:10px;padding:.35rem .9rem;}
+  .year-content{padding:.8rem;}
+}
+
 #status{position:fixed;bottom:1rem;right:1rem;font-family:'Press Start 2P',monospace;font-size:.4rem;padding:.4rem .8rem;border:2px solid var(--black);background:var(--white);z-index:999;box-shadow:3px 3px 0 var(--black);}
 .pixel-wave{width:100%;height:32px;background:var(--hot-pink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='16' width='8' height='16'/%3E%3Crect x='8' y='8' width='8' height='24'/%3E%3Crect x='16' y='0' width='8' height='32'/%3E%3Crect x='24' y='8' width='8' height='24'/%3E%3C/svg%3E") repeat-x bottom;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect x='0' y='16' width='8' height='16'/%3E%3Crect x='8' y='8' width='8' height='24'/%3E%3Crect x='16' y='0' width='8' height='32'/%3E%3Crect x='24' y='8' width='8' height='24'/%3E%3C/svg%3E") repeat-x bottom;position:relative;z-index:1;}
 .pink-section{background:var(--hot-pink);position:relative;z-index:1;padding:1rem 2rem;text-align:center;}
@@ -134,6 +220,15 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
 @media(max-width:480px){.img-upload-label{font-size:.42rem;}.img-upload-label .upload-icon{font-size:1.5rem;}.mem-img{max-height:180px;}}
 @media(max-width:768px){.hero{padding:3.5rem 1.2rem 3rem;}.hero-title{font-size:clamp(1.8rem,10vw,3.5rem);}.hero-subtitle{font-size:1.1rem;}.hero-names{font-size:.5rem;gap:.6rem;padding:.7rem 1rem;}.countdown-section{padding:1.5rem 1rem;}.countdown-card{padding:1.2rem 1rem;}.cd-unit{min-width:52px;padding:.5rem .6rem;}.cd-unit .big{font-size:1.1rem;}.cd-unit .sm{font-size:.38rem;}.together-label{font-size:1rem;}.section{padding:1.5rem 1rem;}.sec-title{font-size:clamp(1rem,5vw,1.6rem);}.add-box{padding:1.2rem 1rem;}.item{padding:1rem;}.item-title{font-size:.55rem;}}
 @media(max-width:480px){body{cursor:auto;}#cursor{display:none;}.marquee-track span{font-size:.5rem;margin:0 1.2rem;}.hero{padding:2.5rem 1rem 2.5rem;}.hero-eyebrow{font-size:.45rem;letter-spacing:.08em;margin-bottom:1rem;}.hero-title{font-size:clamp(1.5rem,11vw,2.8rem);}.hero-subtitle{font-size:1rem;margin:.8rem 0 1.5rem;}.hero-names{font-size:.42rem;gap:.5rem;padding:.6rem .9rem;flex-wrap:wrap;justify-content:center;text-align:center;}.countdown-section{padding:1rem .8rem;}.countdown-card{padding:1.2rem .9rem;box-shadow:5px 5px 0 var(--black);}.since-date{flex-direction:column;align-items:flex-start;gap:.5rem;}.since-label{font-size:.42rem;}.since-input{font-size:.45rem;padding:.45rem .6rem;width:100%;}.cd-row{gap:.5rem;justify-content:flex-start;}.cd-unit{min-width:0;flex:1;padding:.5rem .3rem;box-shadow:3px 3px 0 var(--black);}.cd-unit .big{font-size:.95rem;}.cd-unit .sm{font-size:.35rem;}.together-label{font-size:.85rem;width:100%;margin-top:.3rem;}.pink-section p{font-size:.4rem;line-height:2.2;}.nav-btn{font-size:.42rem;padding:.9rem .9rem;}.section{padding:1.2rem .8rem;}.sec-header{margin-bottom:1.2rem;gap:.6rem;}.sec-title{font-size:clamp(.9rem,6vw,1.4rem);}.sec-count{font-size:.42rem;padding:.2rem .5rem;}.add-box{padding:1rem .9rem;box-shadow:4px 4px 0 var(--black);margin-bottom:1.5rem;}.add-box-label{font-size:.42rem;top:-12px;}.field{font-size:.95rem;padding:.65rem .85rem;border-width:2.5px;margin-bottom:.65rem;}textarea.field{min-height:70px;}.emoji-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:.3rem;-webkit-overflow-scrolling:touch;gap:.3rem;}.emoji-row::-webkit-scrollbar{display:none;}.e-opt{font-size:1.2rem;padding:4px;border-width:2px;}.btn{font-size:.45rem;padding:.65rem 1rem;box-shadow:3px 3px 0 var(--black);}.frow{gap:.5rem;}.frow input[type="date"]{width:100%;margin:0 0 .3rem 0;}.frow .btn{width:100%;}.frow select{width:100%;margin:0 0 .3rem 0;}.item{grid-template-columns:42px 1fr;grid-template-rows:auto auto;gap:.6rem .7rem;padding:.9rem .9rem .9rem .7rem;box-shadow:4px 4px 0 var(--black);border-width:3px;}.item::before{width:5px;}.item-emoji-box{width:42px;height:42px;font-size:1.2rem;border-width:2px;}.item-body{grid-column:2/3;}.item-actions{grid-column:1/-1;flex-direction:row;gap:.4rem;padding-top:.3rem;border-top:1.5px dashed rgba(0,0,0,.1);}.ico-btn{width:36px;height:36px;font-size:.95rem;border-width:2px;box-shadow:2px 2px 0 var(--black);}.item-title{font-size:.52rem;line-height:1.7;}.item-desc{font-size:.88rem;}.item-meta{font-size:.4rem;}.check-circle{width:28px;height:28px;border-width:2.5px;font-size:.9rem;margin-top:0;}.tag{font-size:.38rem;padding:.22rem .5rem;}.empty-state{padding:2.5rem .5rem;}.empty-state .big{font-size:2.5rem;}.empty-state p{font-size:.45rem;}#status{font-size:.35rem;padding:.35rem .65rem;bottom:.6rem;right:.6rem;box-shadow:2px 2px 0 var(--black);}.pixel-deco{display:none;}.pink-section{padding:1.5rem 1rem;}}
+
+
+.bb-ctrl-btn:active{transform:scale(.92);}
+
+
+.game-section #bb-ui{
+  max-width:400px;
+  margin:0 auto;
+}
 </style>
 </head>
 <body>
@@ -191,6 +286,8 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
   <button class="nav-btn" data-s="notes">💌 LOVE NOTES</button>
 </nav>
 <div class="sections">
+
+  <!-- MEMORIES -->
   <div class="section active" id="s-memories">
     <div class="sec-header">
       <span class="sec-title">MEMORIES</span>
@@ -214,21 +311,6 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
       </div>
       <input class="field" id="m-title" placeholder="Name this memory..." maxlength="80"/>
       <textarea class="field" id="m-desc" placeholder="Tell the whole story... every little detail 💕" rows="3"></textarea>
-      <div class="img-upload-area" id="m-drop-zone">
-        <input type="file" id="m-img-input" accept="image/*"/>
-        <div class="img-upload-label">
-          <span class="upload-icon">📷</span>
-          <span>TAP TO ADD A PHOTO</span>
-          <span style="font-size:.38rem;margin-top:.2rem;opacity:.6;">JPG, PNG, WEBP — MAX 5MB</span>
-        </div>
-      </div>
-      <div id="m-img-preview-wrap" style="display:none;">
-        <div class="img-preview-wrap">
-          <img class="img-preview" id="m-img-preview" src="" alt="preview"/>
-          <button class="img-preview-remove" onclick="clearMemImg()" title="Remove">✕</button>
-        </div>
-      </div>
-      <div class="upload-progress" id="m-progress"><div class="upload-progress-bar" id="m-progress-bar"></div></div>
       <div class="frow">
         <input type="date" class="field" id="m-date" style="width:auto;margin:0;"/>
         <button class="btn btn-pink" onclick="addMemory()">SAVE IT ♥</button>
@@ -236,6 +318,8 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
     </div>
     <div class="card-grid" id="list-memories"><div class="loading-txt">loading...</div></div>
   </div>
+
+  <!-- TODOS -->
   <div class="section" id="s-todos">
     <div class="sec-header">
       <span class="sec-title">TO-DO</span>
@@ -249,6 +333,8 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
     </div>
     <div class="card-grid" id="list-todos"><div class="loading-txt">loading...</div></div>
   </div>
+
+  <!-- BUCKET LIST -->
   <div class="section" id="s-bucket">
     <div class="sec-header">
       <span class="sec-title">BUCKET LIST</span>
@@ -269,6 +355,8 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
     </div>
     <div class="card-grid" id="list-bucket"><div class="loading-txt">loading...</div></div>
   </div>
+
+  <!-- LOVE NOTES -->
   <div class="section" id="s-notes">
     <div class="sec-header">
       <span class="sec-title">LOVE NOTES</span>
@@ -278,24 +366,11 @@ select.field{width:auto;padding:.6rem 1rem;margin:0;cursor:pointer;}
       <span class="add-box-label">WRITE A NOTE</span>
       <input class="field" id="n-from" placeholder="From (your name)..." maxlength="40"/>
       <textarea class="field" id="n-text" placeholder="Say something sweet... 🍬 make them smile" rows="3"></textarea>
-      <div class="img-upload-area" id="n-drop-zone">
-        <input type="file" id="n-img-input" accept="image/*"/>
-        <div class="img-upload-label">
-          <span class="upload-icon">🖼️</span>
-          <span>ADD A PHOTO (OPTIONAL)</span>
-        </div>
-      </div>
-      <div id="n-img-preview-wrap" style="display:none;">
-        <div class="img-preview-wrap">
-          <img class="img-preview" id="n-img-preview" src="" alt="preview"/>
-          <button class="img-preview-remove" onclick="clearNoteImg()" title="Remove">✕</button>
-        </div>
-      </div>
-      <div class="upload-progress" id="n-progress"><div class="upload-progress-bar" id="n-progress-bar"></div></div>
       <button class="btn btn-yellow" onclick="addNote()">SEND NOTE 💌</button>
     </div>
     <div class="card-grid" id="list-notes"><div class="loading-txt">loading...</div></div>
   </div>
+
 </div>
 <div class="pixel-wave" style="transform:rotate(180deg);margin-top:3rem;"></div>
 <div class="pink-section" style="padding:2rem;">
@@ -516,22 +591,49 @@ function renderMemories(items){
   const el=document.getElementById('list-memories');
   document.getElementById('count-memories').textContent=items.length;
   if(!items.length){el.innerHTML=emptyState('📷','NO MEMORIES YET','go create something beautiful together');return;}
-  el.innerHTML=items.map(m=>`
-    <div class="item" style="grid-template-columns:1fr;padding-left:1.2rem;">
-      ${m.imgUrl?`<img class="mem-img" src="${m.imgUrl}" alt="${esc(m.title)}" onclick="openLightbox('${m.imgUrl}','${esc(m.title)}')"/>`:''}
-      <div style="display:grid;grid-template-columns:42px 1fr auto;gap:.7rem;align-items:start;">
-        <div class="item-emoji-box">${m.emoji||'📸'}</div>
-        <div class="item-body">
-          <div class="item-title">${esc(m.title)}</div>
-          ${m.desc?`<div class="item-desc">${esc(m.desc)}</div>`:''}
-          <div class="item-meta">📅 ${m.date}</div>
+
+  // Group by year
+  const byYear={};
+  items.forEach(m=>{
+    const yr=m.date?m.date.split('-')[0]:(new Date(m.createdAt).getFullYear()+'');
+    if(!byYear[yr])byYear[yr]=[];
+    byYear[yr].push(m);
+  });
+
+  const years=Object.keys(byYear).sort((a,b)=>b-a);
+
+  el.innerHTML=years.map(yr=>`
+    <div class="year-folder" id="yr-${yr}">
+      <div class="year-header" onclick="toggleYear('${yr}')">
+        <div class="year-header-left">
+          <span class="year-folder-icon" id="yr-icon-${yr}">📁</span>
+          <span class="year-label">${yr}</span>
+          <span class="year-count">${byYear[yr].length} MEMORIES</span>
         </div>
-        <div class="item-actions">
-          <button class="ico-btn" onclick="delMemory('${m.id}')" title="Delete">🗑</button>
-        </div>
+        <span class="year-arrow" id="yr-arrow-${yr}">▼</span>
+      </div>
+      <div class="year-content" id="yr-content-${yr}">
+        ${byYear[yr].map(m=>`
+          <div class="item mem-card">
+            <div class="item-emoji-box">${m.emoji||'📸'}</div>
+            <div class="item-body">
+              <div class="item-title">${esc(m.title)}</div>
+              ${m.desc?`<div class="item-desc">${esc(m.desc)}</div>`:''}
+              <div class="item-meta">📅 ${m.date}</div>
+            </div>
+          </div>
+        `).join('')}
       </div>
     </div>
   `).join('');
+}
+
+function toggleYear(yr){
+  const content=document.getElementById('yr-content-'+yr);
+  const arrow=document.getElementById('yr-arrow-'+yr);
+  const isOpen=content.classList.contains('open');
+  content.classList.toggle('open');
+  arrow.textContent=isOpen?'▼ OPEN':'▲ CLOSE';
 }
 
 // TODOS
@@ -564,9 +666,6 @@ function renderTodos(items){
       <div class="item-body">
         <div class="item-title">${esc(t.title)}</div>
         ${t.desc?`<div class="item-desc">${esc(t.desc)}</div>`:''}
-      </div>
-      <div class="item-actions">
-        <button class="ico-btn" onclick="delTodo('${t.id}')">🗑</button>
       </div>
     </div>
   `).join('');
@@ -610,7 +709,6 @@ function renderBucket(items){
       </div>
       <div class="item-actions">
         ${b.tag!=='done'?`<button class="ico-btn" onclick="doneBucket('${b.id}')" title="Mark done">✅</button>`:''}
-        <button class="ico-btn" onclick="delBucket('${b.id}')">🗑</button>
       </div>
     </div>`;
   }).join('');
@@ -652,9 +750,6 @@ function renderNotes(items){
         <div class="item-desc">${esc(n.text)}</div>
         <div class="item-meta">${new Date(n.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
       </div>
-      <div class="item-actions">
-        <button class="ico-btn" onclick="delNote('${n.id}')">🗑</button>
-      </div>
     </div>
   `).join('');
 }
@@ -675,6 +770,9 @@ function flash(msg){alert(msg);}
 function emptyState(emoji,title,sub){return `<div class="empty-state"><span class="big">${emoji}</span><p>${title}</p><p style="margin-top:.5rem;font-size:.4rem;">${sub}</p></div>`;}
 
 initListeners();
+
+
+
 </script>
 </body>
 </html>
